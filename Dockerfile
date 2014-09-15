@@ -19,7 +19,7 @@ ADD files/asterisk.conf /etc/supervisor/conf.d/asterisk.conf
 ADD files/boot.sh /usr/local/bin/boot.sh
 RUN chmod +x /usr/local/bin/boot.sh
 
-EXPOSE 9001
-EXPOSE 5060
+#EXPOSE 9001
+EXPOSE 5060 
 
 CMD ["/usr/local/bin/boot.sh"]
