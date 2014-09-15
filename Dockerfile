@@ -19,6 +19,8 @@ ADD files/asterisk.conf /etc/supervisor/conf.d/asterisk.conf
 ADD files/boot.sh /usr/local/bin/boot.sh
 RUN chmod +x /usr/local/bin/boot.sh
 
+RUN chown asterisk:asterisk /var/lib/asterisk
+
 #EXPOSE 9001
 EXPOSE 5060 
 
