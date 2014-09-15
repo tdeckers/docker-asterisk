@@ -5,14 +5,19 @@
 
 ETH0_FOUND=`grep "eth0" /proc/net/dev`
 
+function launch {
+  service asterisk start
+  # Wait for asterisk to boot.
+  sleep(5)
+  exec tail -f /var/log/asterisk/messages
+}
+
 if [ -n "$ETH0_FOUND" ] ;
 then 
   # We're in a container with regular eth0 (default)
-  service asterisk start
-  exec tail -f /var/log/asterisk/messages
+  launch
 else 
   # We're in a container without initial network.  Wait for it...
   /usr/local/bin/pipework --wait
-  service asterisk start
-  exec tail -f /var/log/asterisk/messages
+  launch
 fi
