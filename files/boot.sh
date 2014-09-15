@@ -8,7 +8,7 @@ ETH0_FOUND=`grep "eth0" /proc/net/dev`
 function launch {
   service asterisk start
   # Wait for asterisk to boot.
-  sleep(5)
+  sleep 5
   exec tail -f /var/log/asterisk/messages
 }
 
