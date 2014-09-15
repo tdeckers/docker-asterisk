@@ -9,7 +9,8 @@ function launch {
   service asterisk start
   # Wait for asterisk to boot.
   sleep 5
-  exec tail -f /var/log/asterisk/messages
+  #exec tail -f /var/log/asterisk/messages
+  exec asterisk -rvvv
 }
 
 if [ -n "$ETH0_FOUND" ] ;
