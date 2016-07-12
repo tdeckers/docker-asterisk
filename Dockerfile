@@ -1,7 +1,7 @@
 
 # Asterisk
 #
-FROM debian:jessie
+FROM ubuntu:16.04
 MAINTAINER Tom Deckers <tom@ducbase.com>
 
 # Set environment variables
