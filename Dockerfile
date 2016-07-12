@@ -1,17 +1,19 @@
 
 # Asterisk
 #
-FROM ubuntu:14.04
+FROM debian:jessie
 MAINTAINER Tom Deckers <tom@ducbase.com>
 
 # Set environment variables
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get -y install unzip supervisor wget
+RUN apt-get -y update \
+ && apt-get -y upgrade \
+ && apt-get -y install unzip supervisor wget \
+ && apt-get -y install asterisk asterisk-doc asterisk-dev asterisk-ooh323 libasound2-plugins alsa-utils libsox-fmt-all speex
 
-RUN apt-get -y install asterisk asterisk-doc asterisk-dev asterisk-ooh323 libasound2-plugins alsa-utils libsox-fmt-all speex
+RUN apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Configure supervisor to run openhab
 ADD files/supervisord.conf /etc/supervisor/supervisord.conf
